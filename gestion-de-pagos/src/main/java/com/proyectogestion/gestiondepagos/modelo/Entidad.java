@@ -19,11 +19,12 @@ public class Entidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    Integer id_identidad;
+    Integer id_entidad;
     String nombre_entidad;
     Integer cuit_entidad;
     String razon_social_entidad;
     String direccion_entidad;
+    String contrasena;
 
 
 }
