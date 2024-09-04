@@ -1,5 +1,4 @@
 package com.proyectogestion.gestiondepagos.servicio;
-
 import com.proyectogestion.gestiondepagos.modelo.Entidad;
 import com.proyectogestion.gestiondepagos.repositorio.EntidadRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,9 @@ public class EntidadServicio implements IEntidadServicio {
     }
 
     @Override
-    public Entidad registrarEntidad(Entidad entidad) {
+    public Entidad registrarEntidad(Entidad entidad){
         return entidadRepositorio.save(entidad);
     }
-
     @Override
     public void eliminarEntidad(Entidad entidad) {
         entidadRepositorio.delete(entidad);
