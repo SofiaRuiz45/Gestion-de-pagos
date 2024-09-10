@@ -20,10 +20,14 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id_pago;
-    long nro_pago;
+    Integer num_factura;
     LocalDate fecha_pago;
-    String tipo_pago;
-    double monto;
-    Integer id_entidad;
-    Integer id_proveedor;
+    //Proveedor datos_proveedor;
+    //Entidad datos_entidad;
+    String descripcion;
+    String estado_pago;
+    double precio_unitario;
+    double subtotal;
+    double total;
+
 }

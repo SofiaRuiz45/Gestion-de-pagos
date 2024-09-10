@@ -15,10 +15,10 @@ import java.util.logging.Logger;
 @RequestMapping
 @CrossOrigin(value = "http://localhost:3000")
 public class PagoControlador{
-    private static final Logger logger =
+    /*private static final Logger logger =
             LoggerFactory.getLogger(PagoControlador.class);
     @Autowired
     private PagoServicio pagoServicio;
 
-    @GetMapping("/Pago")
+    //@GetMapping("/Pago")*/
 }
