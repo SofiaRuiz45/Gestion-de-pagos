@@ -14,6 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
 public class Entidad {
 
     @Id
@@ -21,7 +22,7 @@ public class Entidad {
 //orden acorde al diagrama y se arreglaron los atributos.
     Integer id_entidad;
     String nombre_entidad;
-    Integer cuit_entidad;
+    Long cuit_entidad;
     String correo_electronico_entidad;
     Long telefono_entidad;
     String razon_social_entidad;
