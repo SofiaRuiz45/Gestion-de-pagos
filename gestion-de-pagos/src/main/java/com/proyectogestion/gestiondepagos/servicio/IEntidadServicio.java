@@ -10,6 +10,8 @@ public interface IEntidadServicio {
 
     public Entidad registrarEntidad(Entidad entidad);
 
+    //
+
     public void eliminarEntidad(Entidad entidad);
 
     public void iniciarSesion(String nombre_entidad, Long cuit_entidad, String contrasena);

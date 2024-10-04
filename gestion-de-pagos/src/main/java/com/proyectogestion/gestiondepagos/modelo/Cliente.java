@@ -15,15 +15,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 
-public class Proveedor {
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Integer id_proveedor;
-    String nombre_proveedor;
+   private Integer id_cliente;
+    String nombre_cliente;
     private String rubro;
-    private Long cuit_proveedor;
-    private String direccion_proveedor;
-    private Long telefono_proveedor;
-    private String razon_social_proveedor;
-    private String correo_electronico_proveedor;
+    private Long cuit_cliente;
+    private String direccion_cliente;
+    private Long telefono_cliente;
+    private String razon_social_cliente;
+    private String correo_electronico_cliente;
 }

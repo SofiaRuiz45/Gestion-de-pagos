@@ -1,9 +1,6 @@
 package com.proyectogestion.gestiondepagos.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,12 +19,19 @@ public class Pago {
     Integer id_pago;
     Integer num_factura;
     LocalDate fecha_pago;
-    //Proveedor datos_proveedor;
-    //Entidad datos_entidad;
+    @ManyToOne
+    @JoinColumn(name= "datos_cliente")
+    Cliente datos_cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "datos_entidad")
+    Entidad datos_entidad;
+
     String descripcion;
     String estado_pago;
     double precio_unitario;
     double subtotal;
     double total;
+    String forma_de_pago;
 
 }
