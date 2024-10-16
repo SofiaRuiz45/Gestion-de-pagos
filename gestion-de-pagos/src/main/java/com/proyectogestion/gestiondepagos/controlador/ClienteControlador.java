@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("gestion-de-pagos")
@@ -30,9 +32,9 @@ public class ClienteControlador {
     @PostMapping("/clientes")
     public Cliente agregarProveedor(@RequestBody Cliente clientes){
         logger.info("Cliente a agregar: "+ clientes);
-        return clienteServicio.registrarCliente(clientes);
+        return clienteServicio.registrarClientes(clientes);
     }
-
+    //buscar cliente
     @GetMapping("/clientes/{id}")
     public ResponseEntity<Cliente>
         obtenerProveedorPorID(@PathVariable Integer id) {
@@ -44,13 +46,33 @@ public class ClienteControlador {
         }
         return ResponseEntity.ok(clientes);
         }
+        //actualizar entidad
     @PutMapping("/clientes/{id}")
     public ResponseEntity<Cliente>
-    editarclientes(@PathVariable Integer id,
-                    @RequestBody Cliente clientesRecibido){
-        Cliente clientes = clienteServicio.buscarClientePorId(id);
-        if(clientes == null)
+    editarclientes(@PathVariable Integer id, @RequestBody Cliente clienteRecibido){
+        Cliente cliente = clienteServicio.buscarClientePorId(id);
+        if(cliente == null)
             throw new RecursoNoEncontradoEx("Id no encontrado: " + id);
-        return null;
+        cliente.setNombre_cliente(clienteRecibido.getNombre_cliente());
+        cliente.setRubro(clienteRecibido.getRubro());
+        cliente.setCuit_cliente(clienteRecibido.getCuit_cliente());
+        cliente.setDireccion_cliente(clienteRecibido.getDireccion_cliente());
+        cliente.setTelefono_cliente(clienteRecibido.getTelefono_cliente());
+        cliente.setRazon_social_cliente(clienteRecibido.getRazon_social_cliente());
+        cliente.setCorreo_electronico_cliente(clienteRecibido.getCorreo_electronico_cliente());
+
+        clienteServicio.registrarClientes(cliente);
+        return  ResponseEntity.ok(cliente);
+    }
+    //eliminar cliente
+    @DeleteMapping("/clientes/{id}")
+    public ResponseEntity<Map<String, Boolean>> eliminarCliente(@PathVariable Integer id){
+        Cliente cliente = clienteServicio.buscarClientePorId(id);
+        if (cliente == null)
+            throw new RecursoNoEncontradoEx("Id de cliente no encontrado");
+        clienteServicio.eliminarCliente(cliente);
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("Cliente eliminado", Boolean.TRUE);
+        return  ResponseEntity.ok(respuesta);
     }
 }

@@ -30,7 +30,7 @@ public class EntidadControlador {
         entidades.forEach((entidad -> logger.info(entidad.toString())));
         return entidades;
     }
-   //ver sentido, y si se puede implementar despues
+
     @PostMapping("/entidad")
     public Entidad agregarEntidad(@RequestBody Entidad entidad) {
         logger.info("Entidad a agregar: " + entidad);

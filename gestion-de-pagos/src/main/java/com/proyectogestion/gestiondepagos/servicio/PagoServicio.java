@@ -12,12 +12,18 @@ public class PagoServicio implements  IPagoServicio{
 
         //esto simplemente lo lista, ver si es util o no
         @Override
-        public List<Pago> verHistorial() {
-            return pagoRepositorio.findAll();
+        public List<Pago> verPagosRealizados() {
+                return List.of();
         }
 
         @Override
         public Pago realizarPago(Pago pago) {
             return pagoRepositorio.save(pago);
+        }
+
+        @Override
+        public Pago buscarPago(Integer id_pago){
+                Pago pago = pagoRepositorio.findById(id_pago).orElse(null);
+                return pago;
         }
 }
