@@ -6,7 +6,11 @@ import java.util.List;
 
 public interface IPagoServicio {
 
-    public List<Pago> verHistorial();
+    public List<Pago> verPagosRealizados();
+    //llamar a recibo -- crear
 
     public Pago realizarPago(Pago pago);
+
+    public Pago buscarPago(Integer id_pago);
+
 }

@@ -7,8 +7,6 @@ public interface IClienteServicio {
 
     public Cliente registrarClientes(Cliente cliente);
 
-    Cliente registrarCliente(Cliente cliente);
-
     public void eliminarCliente(Cliente cliente);
 
     public Cliente buscarClientePorId(Integer id_cliente);

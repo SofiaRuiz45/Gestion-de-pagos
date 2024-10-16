@@ -16,7 +16,7 @@ public class EntidadServicio implements IEntidadServicio {
     public List<Entidad> listarEntidades() {
         return entidadRepositorio.findAll();
     }
-
+//se utiliza para realizar las acciones de eliminar y modificar
     @Override
     public Entidad buscarEntidadPorId(Integer id_Entidad) {
         Entidad entidad = entidadRepositorio.findById(id_Entidad).orElse(null);

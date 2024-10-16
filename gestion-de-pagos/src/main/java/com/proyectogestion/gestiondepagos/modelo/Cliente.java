@@ -18,12 +18,12 @@ import lombok.ToString;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Integer id_cliente;
+    Integer id_cliente;
     String nombre_cliente;
-    private String rubro;
-    private Long cuit_cliente;
-    private String direccion_cliente;
-    private Long telefono_cliente;
-    private String razon_social_cliente;
-    private String correo_electronico_cliente;
+    String rubro;
+    Long cuit_cliente;
+    String direccion_cliente;
+    Long telefono_cliente;
+    String razon_social_cliente;
+    String correo_electronico_cliente;
 }
