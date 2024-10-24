@@ -1,37 +1,62 @@
 package com.proyectogestion.gestiondepagos.modelo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import java.time.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "formas_de_pago")
 
 public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id_pago;
-    Integer num_factura;
-    LocalDate fecha_pago;
+    @Column(unique = true)
+    Integer numeroPago;
     @ManyToOne
-    @JoinColumn(name= "datos_cliente")
-    Cliente datos_cliente;
+    @JoinColumn(name = "id_factura")
+    Factura factura;
 
-    @ManyToOne
-    @JoinColumn(name = "datos_entidad")
-    Entidad datos_entidad;
-
+    //se define el formato: año/mes/día
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    Date fecha_pago;
     String descripcion;
     String estado_pago;
-    double precio_unitario;
-    double subtotal;
+
+    @OneToMany(mappedBy = "pago", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    List<FormaPago> formas_de_pago = new ArrayList<>();
     double total;
-    String forma_de_pago;
+
+    @Override
+    public String toString() {
+        StringBuilder formasPagoStr = new StringBuilder();
+        if (formas_de_pago != null) {
+            for (FormaPago forma : formas_de_pago) {
+                formasPagoStr.append(forma.toString()).append(", ");
+            }
+        }
+        return "Pago{" +
+                "id_pago=" + id_pago +
+                ", numeroPago=" + numeroPago +
+                ", fecha_pago=" + fecha_pago +
+                ", descripcion='" + descripcion + '\'' +
+                ", estado_pago='" + estado_pago + '\'' +
+                ",factura= "+ factura +"\'"+
+                ", total=" + total +
+                ", formas_de_pago=[" + formasPagoStr.toString() + "]" +
+                '}';
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.proyectogestion.gestiondepagos.servicio;
 
 import com.proyectogestion.gestiondepagos.modelo.Cliente;
+import com.proyectogestion.gestiondepagos.modelo.Entidad;
 import com.proyectogestion.gestiondepagos.modelo.Factura;
 import com.proyectogestion.gestiondepagos.repositorio.FacturaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class FacturaServicio  implements IFacturaServicio {
     @Override
 
     public Factura registrarFactura(Factura factura) {
+        //se va a realizar una validación en caso de que exista otra factura con el mismo numeroFactura
+        Factura facturaExistente= facturaRepositorio.findByNumeroFactura(factura.getNumeroFactura());
+        if (facturaExistente != null){
+            throw new IllegalArgumentException("Ya existe una factura con el n°: " + factura.getNumeroFactura());
+        }
         return facturaRepositorio.save(factura);
     }
 
@@ -30,21 +36,21 @@ public class FacturaServicio  implements IFacturaServicio {
     public List<Factura> listarFacturas() {
         return facturaRepositorio.findAll();
     }
-
     //busqueda por numero de factura
     @Override
-    public Factura buscarFacturaPorNum(Integer numero_factura) {
-        return facturaRepositorio.findByNumeroFactura(numero_factura);
+    public Factura buscarFacturaPorNum(Integer numeroFactura) {
+        return facturaRepositorio.findByNumeroFactura(numeroFactura);
     }
-
     @Override
     public List<Factura> buscarFacturasPorCliente(Cliente cliente) {
         return facturaRepositorio.findByCliente(cliente);
 
     }
-//busqueda de las facturas del cliente
-    /*@Override
-    public List<Factura> buscarFacturasPorCliente(Cliente cliente) {
-        return facturaRepositorio.findByFacturasCliente(cliente);*/
-    //}
+//busqueda de las facturas de una entidad
+    @Override
+    public List<Factura> buscarFacturasPorEntidad(Entidad entidad) {
+        return facturaRepositorio.findByEntidad(entidad);
+    }
+
+
 }
