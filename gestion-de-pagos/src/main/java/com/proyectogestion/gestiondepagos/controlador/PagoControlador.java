@@ -1,24 +1,37 @@
 package com.proyectogestion.gestiondepagos.controlador;
 
 
+import com.proyectogestion.gestiondepagos.modelo.Pago;
 import com.proyectogestion.gestiondepagos.servicio.PagoServicio;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.logging.Logger;
+import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping ("gestion-de-pagos")
 @CrossOrigin(value = "http://localhost:3000")
 public class PagoControlador{
-    /*private static final Logger logger =
-            LoggerFactory.getLogger(PagoControlador.class);
+    private static final Logger logger= LoggerFactory.getLogger(PagoControlador.class);
+
     @Autowired
     private PagoServicio pagoServicio;
 
-    //@GetMapping("/Pago")*/
+    @GetMapping("/pagos/pagos-realizados")
+    public List<Pago> obtenerPagos(){
+        var pagos = pagoServicio.verPagosRealizados();
+        pagos.forEach(pago -> logger.info(pago.toString()));
+        return pagos;
+    }
+
+    //registrar un pago, por el momento no guarda el cliente ni la factura
+    @PostMapping("/pagos/realizar-pago")
+    public Pago realizarPago(@RequestBody Pago pago){
+        logger.info("Pago a agregar: "+pago);
+        Pago pagoGuardado = pagoServicio.realizarPago(pago);
+        return pagoGuardado;
+    }
 }
