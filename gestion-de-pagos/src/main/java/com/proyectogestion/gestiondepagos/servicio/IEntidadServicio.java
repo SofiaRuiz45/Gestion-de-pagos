@@ -12,5 +12,5 @@ public interface IEntidadServicio {
 
     public void eliminarEntidad(Entidad entidad);
 
-    public void iniciarSesion(String nombre_entidad, Long cuit_entidad, String contrasena);
+    public Entidad iniciarSesion(String correo_entidad, Long cuit_entidad, String contrasena);
 }
