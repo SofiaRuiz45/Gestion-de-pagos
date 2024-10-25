@@ -33,7 +33,17 @@ public class EntidadServicio implements IEntidadServicio {
     }
 
     @Override
-    public void iniciarSesion(String nombre_entidad, Long cuit_entidad, String contrasena) {
-        //como funciona el inicio de sesión.
+    public Entidad iniciarSesion(String correoElectronicoEntidad, Long cuitEntidad, String contrasena) {
+        // Se busca la entidad por correo y cuit
+        Entidad entidad = entidadRepositorio.findByCorreoElectronicoEntidadAndCuitEntidad(correoElectronicoEntidad, cuitEntidad);
+
+        // Si la entidad no existe o la contraseña es incorrecta, retornamos null
+        if (entidad == null || entidad.getContrasena() == null || !entidad.getContrasena().equals(contrasena)) {
+            return null;
+        }
+
+        // Si todo está correcto, retornamos la entidad
+        return entidad;
     }
+
 }

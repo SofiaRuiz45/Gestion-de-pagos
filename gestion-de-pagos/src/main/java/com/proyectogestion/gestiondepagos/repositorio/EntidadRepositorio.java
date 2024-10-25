@@ -5,4 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EntidadRepositorio extends JpaRepository <Entidad, Integer>{
 
+    //para buscar la entidad por correo y cuit
+    //ver el tema del nombre
+    Entidad findByCorreoElectronicoEntidadAndCuitEntidad(String correoElectronicoEntidad, Long cuitEntidad);
 }
