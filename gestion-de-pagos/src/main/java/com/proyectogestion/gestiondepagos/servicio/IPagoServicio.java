@@ -14,7 +14,7 @@ public interface IPagoServicio {
 
     public Pago buscarPagoPorId(Integer id_pago);
 
-    public List<Pago>buscarPagosPorCliente(Cliente cliente);
+    public List<Pago>buscarPagosPorCliente(String nombreCliente);
 
     public List<Pago>buscarPagoPorEntidad(Entidad entidad);
 }

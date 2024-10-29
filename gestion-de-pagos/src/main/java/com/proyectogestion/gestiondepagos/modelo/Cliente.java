@@ -19,7 +19,8 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id_cliente;
-    String nombre_cliente;
+    //ver si es necesario cambiar los nombres sacando guión bajo
+    String nombreCliente;
     String rubro;
     Long cuit_cliente;
     String direccion_cliente;

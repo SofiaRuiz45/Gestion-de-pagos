@@ -53,7 +53,7 @@ public class ClienteControlador {
         Cliente cliente = clienteServicio.buscarClientePorId(id);
         if(cliente == null)
             throw new RecursoNoEncontradoEx("Id no encontrado: " + id);
-        cliente.setNombre_cliente(clienteRecibido.getNombre_cliente());
+        cliente.setNombreCliente(clienteRecibido.getNombreCliente());
         cliente.setRubro(clienteRecibido.getRubro());
         cliente.setCuit_cliente(clienteRecibido.getCuit_cliente());
         cliente.setDireccion_cliente(clienteRecibido.getDireccion_cliente());

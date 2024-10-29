@@ -28,8 +28,7 @@
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<version>8.0.30</version> <!-- Especifica la versión si es necesario -->
+			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
