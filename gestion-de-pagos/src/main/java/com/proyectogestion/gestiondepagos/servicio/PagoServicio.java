@@ -50,10 +50,13 @@ public class PagoServicio implements  IPagoServicio{
                 return pago;
         }
 
+
         @Override
-        public List<Pago> buscarPagosPorCliente(Cliente cliente) {
-                return List.of();
+        public List<Pago> buscarPagosPorCliente(String nombreCliente) {
+                //pagos realizados por un cliente especifico, se debe de recibir un nombre
+                return pagoRepositorio.findByNombreCliente(nombreCliente) ;
         }
+
 
         @Override
         public List<Pago> buscarPagoPorEntidad(Entidad entidad) {

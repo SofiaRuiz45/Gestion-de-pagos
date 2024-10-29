@@ -31,7 +31,6 @@ public class EntidadControlador {
             errorResponse.put("mensaje", "Faltan credenciales necesarias");
             return ResponseEntity.status(400).body(errorResponse);
         }
-
         // Extraer valores del requestBody
         String correo = (String) requestBody.get("correoElectronicoEntidad");
         Long cuit = null;
@@ -43,14 +42,12 @@ public class EntidadControlador {
             return ResponseEntity.status(400).body(errorResponse);
         }
         String contrasena = (String) requestBody.get("contrasena");
-
         // Verificar si los valores no son nulos
         if (correo == null || cuit == null || contrasena == null) {
             Map<String, Object> errorResponse = new HashMap<>();
             errorResponse.put("mensaje", "Las credenciales proporcionadas son inválidas");
             return ResponseEntity.status(400).body(errorResponse);
         }
-
         // Búsqueda de la entidad
         Entidad entidad = entidadServicio.iniciarSesion(correo, cuit, contrasena);
 
@@ -96,7 +93,7 @@ public class EntidadControlador {
         if (entidad == null)
             throw new RecursoNoEncontradoEx("El id no existe");
         //validaciónn antes de ingesar a la BD
-        entidad.setNombre_entidad(entidadRecibido.getNombre_entidad());
+        entidad.setNombreEntidad(entidadRecibido.getNombreEntidad());
         entidad.setCuitEntidad(entidadRecibido.getCuitEntidad());
         entidad.setCorreoElectronicoEntidad(entidadRecibido.getCorreoElectronicoEntidad());
         entidad.setTelefono_entidad(entidadRecibido.getTelefono_entidad());

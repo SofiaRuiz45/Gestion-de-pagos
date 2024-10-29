@@ -21,7 +21,7 @@ public class Entidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //orden acorde al diagrama y se arreglaron los atributos.
     Integer id_entidad;
-    String nombre_entidad;
+    String nombreEntidad;
     Long cuitEntidad;
     String correoElectronicoEntidad;
     Long telefono_entidad;

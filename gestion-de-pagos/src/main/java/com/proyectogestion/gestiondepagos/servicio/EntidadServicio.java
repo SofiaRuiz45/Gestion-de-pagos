@@ -22,7 +22,6 @@ public class EntidadServicio implements IEntidadServicio {
         Entidad entidad = entidadRepositorio.findById(id_Entidad).orElse(null);
         return entidad;
     }
-
     @Override
     public Entidad registrarEntidad(Entidad entidad){
         return entidadRepositorio.save(entidad);
@@ -31,17 +30,14 @@ public class EntidadServicio implements IEntidadServicio {
     public void eliminarEntidad(Entidad entidad) {
         entidadRepositorio.delete(entidad);
     }
-
     @Override
     public Entidad iniciarSesion(String correoElectronicoEntidad, Long cuitEntidad, String contrasena) {
         // Se busca la entidad por correo y cuit
         Entidad entidad = entidadRepositorio.findByCorreoElectronicoEntidadAndCuitEntidad(correoElectronicoEntidad, cuitEntidad);
-
         // Si la entidad no existe o la contraseña es incorrecta, retornamos null
         if (entidad == null || entidad.getContrasena() == null || !entidad.getContrasena().equals(contrasena)) {
             return null;
         }
-
         // Si todo está correcto, retornamos la entidad
         return entidad;
     }

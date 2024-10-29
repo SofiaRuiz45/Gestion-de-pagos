@@ -34,4 +34,9 @@ public class PagoControlador{
         Pago pagoGuardado = pagoServicio.realizarPago(pago);
         return pagoGuardado;
     }
+
+    @GetMapping("/pagos/cliente/{nombreCliente}")
+    public List<Pago>obtenerPagosPorCliente(@RequestParam("nombreCliente") String nombreCliente){
+        return pagoServicio.buscarPagosPorCliente(nombreCliente);
+    }
 }
