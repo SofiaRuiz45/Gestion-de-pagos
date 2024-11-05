@@ -17,6 +17,7 @@ import java.util.Map;
 @RequestMapping("gestion-de-pagos")
 /*se va a recibir peticiones del puerto 3000*/
 @CrossOrigin(value= "http://localhost:3000")
+
 public class EntidadControlador {
     private static final Logger logger =
             LoggerFactory.getLogger(EntidadControlador.class);
@@ -65,7 +66,6 @@ public class EntidadControlador {
         return ResponseEntity.ok(successResponse);
     }
 
-
     @GetMapping("/entidad")
     public List<Entidad> obtenerEntidades(){
         var entidades = entidadServicio.listarEntidades();
@@ -101,9 +101,7 @@ public class EntidadControlador {
         entidad.setDireccion_entidad(entidadRecibido.getDireccion_entidad());
         entidadServicio.registrarEntidad(entidad);
         return ResponseEntity.ok(entidad);
-        //ver tema de la contraseña
     }
-
     //para eliminar entidades por id
         @DeleteMapping("/entidad/{id}")
                 public  ResponseEntity<Map<String, Boolean>>

@@ -10,4 +10,6 @@ public interface IClienteServicio {
     public void eliminarCliente(Cliente cliente);
 
     public Cliente buscarClientePorId(Integer id_cliente);
+
+    public long contarClientes();
 }

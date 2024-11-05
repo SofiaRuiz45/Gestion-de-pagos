@@ -39,10 +39,6 @@ public class Pago {
     List<FormaPago> formas_de_pago = new ArrayList<>();
     double total;
 
-    public String getNombreCliente(){
-        return factura != null ? factura.getNombreCliente() : null;
-    }
-
     @Override
     public String toString() {
         StringBuilder formasPagoStr = new StringBuilder();

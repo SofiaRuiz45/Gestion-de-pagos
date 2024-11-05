@@ -52,5 +52,11 @@ public class FacturaServicio  implements IFacturaServicio {
         return facturaRepositorio.findByEntidad(entidad);
     }
 
+    //busqueda por nombre de cliente en la factura
+    @Override
+    public List<Factura> buscarPagosPorCliente(String nombreCliente) {
+        //pagos realizados por un cliente especifico, se debe de recibir un nombre
+        return facturaRepositorio.findByNombreCliente(nombreCliente) ;
+    }
 
 }

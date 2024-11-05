@@ -17,6 +17,7 @@ import java.util.Map;
 @RequestMapping("gestion-de-pagos")
 @CrossOrigin(value= "http://localhost:3000")
 public class ClienteControlador {
+
     private static final Logger logger =
             LoggerFactory.getLogger(ClienteControlador.class);
     @Autowired
@@ -34,7 +35,7 @@ public class ClienteControlador {
         logger.info("Cliente a agregar: "+ clientes);
         return clienteServicio.registrarClientes(clientes);
     }
-    //buscar cliente
+    //buscar cliente por id
     @GetMapping("/clientes/{id}")
     public ResponseEntity<Cliente>
         obtenerProveedorPorID(@PathVariable Integer id) {
@@ -74,5 +75,10 @@ public class ClienteControlador {
         Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("Cliente eliminado", Boolean.TRUE);
         return  ResponseEntity.ok(respuesta);
+    }
+    //contar a los clientes
+    @GetMapping("/clientes/cantidad")
+    public long contarClientes(){
+        return clienteServicio.contarClientes();
     }
 }

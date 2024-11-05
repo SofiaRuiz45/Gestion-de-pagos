@@ -44,7 +44,7 @@ public class FacturaControlador {
         }
         return  ResponseEntity.ok(factura);
     }
-    // Nuevo método para buscar facturas por cliente
+    // buscar facturas por el id del cliente
     @GetMapping("/facturas/cliente/{idCliente}")
     public ResponseEntity<List<Factura>> obtenerFacturasPorCliente(@PathVariable Integer idCliente) {
         Cliente cliente = new Cliente();
@@ -57,7 +57,6 @@ public class FacturaControlador {
         facturas.forEach(factura -> {
             System.out.println("Número del Cliente: " + factura.getNumeroCliente());
         });
-
         return ResponseEntity.ok(facturas);
     }
     //buscar factura por el número de la factura
@@ -70,7 +69,7 @@ public class FacturaControlador {
         return ResponseEntity.ok(factura);
     }
     //buscar facturas por entidad
-    @GetMapping("/facturas/entidad/{id_entidad}")
+    @GetMapping("/facturas/entidad/{idEntidad}")
     public ResponseEntity<List<Factura>>obtenerFacturasPorEntidad(@PathVariable Integer idEntidad){
         Entidad entidad = new Entidad();
         entidad.setId_entidad((idEntidad));
@@ -82,5 +81,10 @@ public class FacturaControlador {
             System.out.println("Numero de la entidad: "+factura.getNumeroFactura());
         });
         return ResponseEntity.ok(facturas);
+    }
+    //buscar por nombre de cliente en factura
+    @GetMapping("/facturas/cliente_nombre/{nombreCliente}")
+    public List<Factura> obtenerPagosPorNombreCliente(@RequestParam("nombreCliente") String nombreCliente){
+        return facturaServicio.buscarPagosPorCliente(nombreCliente) ;
     }
 }
