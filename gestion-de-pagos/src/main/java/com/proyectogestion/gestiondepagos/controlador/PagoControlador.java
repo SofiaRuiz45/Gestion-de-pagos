@@ -34,14 +34,19 @@ public class PagoControlador{
         Pago pagoGuardado = pagoServicio.realizarPago(pago);
         return pagoGuardado;
     }
-
+    //busqueda de pago por nombre de cliente
     @GetMapping("/pagos/cliente/{nombreCliente}")
     public List<Pago>obtenerPagosPorCliente(@RequestParam("nombreCliente") String nombreCliente){
         return pagoServicio.buscarPagosPorCliente(nombreCliente);
     }
-
+    //busqueda de pago por nombre de entidad
     @GetMapping("/pagos/entidad/{nombreEntidad}")
     public List<Pago>obtenerPagosPorEntidad(@RequestParam("nombreEntidad") String nombreEntidad){
         return pagoServicio.buscarPagoPorEntidad(nombreEntidad);
+    }
+    //busqueda por estado de pago
+    @GetMapping("/pagos/estado/{estadoPago}")
+    public List<Pago>obtenerPagosPorEstado(@PathVariable("estadoPago") String estadoPago){
+        return pagoServicio.buscarPagosPorEstado(estadoPago);
     }
 }

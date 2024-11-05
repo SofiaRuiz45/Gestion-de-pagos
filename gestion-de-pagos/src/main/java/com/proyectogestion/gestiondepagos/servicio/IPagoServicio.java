@@ -1,7 +1,4 @@
 package com.proyectogestion.gestiondepagos.servicio;
-
-import com.proyectogestion.gestiondepagos.modelo.Cliente;
-import com.proyectogestion.gestiondepagos.modelo.Entidad;
 import com.proyectogestion.gestiondepagos.modelo.Pago;
 
 import java.util.List;
@@ -17,4 +14,6 @@ public interface IPagoServicio {
     public List<Pago>buscarPagosPorCliente(String nombreCliente);
 
     public List<Pago>buscarPagoPorEntidad(String nombreEntidad);
+
+    public List<Pago>buscarPagosPorEstado(String estadoPago);
 }
