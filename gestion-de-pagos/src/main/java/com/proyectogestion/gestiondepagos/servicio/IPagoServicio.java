@@ -16,5 +16,5 @@ public interface IPagoServicio {
 
     public List<Pago>buscarPagosPorCliente(String nombreCliente);
 
-    public List<Pago>buscarPagoPorEntidad(Entidad entidad);
+    public List<Pago>buscarPagoPorEntidad(String nombreEntidad);
 }

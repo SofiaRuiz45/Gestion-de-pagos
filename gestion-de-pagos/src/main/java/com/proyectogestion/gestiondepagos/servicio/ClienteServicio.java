@@ -32,4 +32,9 @@ public class ClienteServicio implements IClienteServicio {
         return cliente;
     }
 
+    @Override
+    public long contarClientes() {
+        return clienteRepositorio.count();
+    }
+
 }

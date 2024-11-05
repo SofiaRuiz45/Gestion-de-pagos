@@ -37,14 +37,4 @@ public class Factura {
     public Integer getNumeroCliente() {
         return cliente != null ? cliente.getId_cliente() : null;
     }
-    public String getNombreCliente(){
-        return cliente != null ? cliente.getNombreCliente() : null;
-    }
-    public Integer getNumeroEntidad() {
-        return entidad != null? entidad.getId_entidad(): null;
-    }
-    public String getNombreEntidad(){
-        return entidad != null ? entidad.getNombreEntidad() : null;
-    }
-
 }

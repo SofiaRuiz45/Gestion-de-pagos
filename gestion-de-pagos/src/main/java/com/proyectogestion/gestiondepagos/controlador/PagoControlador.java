@@ -27,7 +27,7 @@ public class PagoControlador{
         return pagos;
     }
 
-    //registrar un pago, por el momento no guarda el cliente ni la factura
+    //registrar un pago
     @PostMapping("/pagos/realizar-pago")
     public Pago realizarPago(@RequestBody Pago pago){
         logger.info("Pago a agregar: "+pago);
@@ -38,5 +38,10 @@ public class PagoControlador{
     @GetMapping("/pagos/cliente/{nombreCliente}")
     public List<Pago>obtenerPagosPorCliente(@RequestParam("nombreCliente") String nombreCliente){
         return pagoServicio.buscarPagosPorCliente(nombreCliente);
+    }
+
+    @GetMapping("/pagos/entidad/{nombreEntidad}")
+    public List<Pago>obtenerPagosPorEntidad(@RequestParam("nombreEntidad") String nombreEntidad){
+        return pagoServicio.buscarPagoPorEntidad(nombreEntidad);
     }
 }

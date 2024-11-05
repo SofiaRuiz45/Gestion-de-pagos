@@ -16,4 +16,8 @@ public interface PagoRepositorio extends JpaRepository<Pago, Integer> {
     @Query("SELECT p FROM Pago p WHERE p.factura.cliente.nombreCliente = :nombreCliente")
     List<Pago>findByNombreCliente(@Param("nombreCliente") String nombreCliente);
 
+    //se busca por nombre de la entidad pagada
+    @Query("SELECT p FROM Pago p WHERE p.factura.entidad.nombreEntidad = :nombreEntidad")
+    List<Pago>findByNombreEntidad(@Param("nombreEntidad") String nombreEntidad);
+
 }
