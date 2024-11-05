@@ -21,4 +21,6 @@ public interface PagoRepositorio extends JpaRepository<Pago, Integer> {
     List<Pago>findByNombreEntidad(@Param("nombreEntidad") String nombreEntidad);
 
     List<Pago> findByEstadoPago(String estadoPago);
+
+    
 }

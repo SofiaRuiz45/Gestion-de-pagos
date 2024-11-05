@@ -42,4 +42,12 @@ public class EntidadServicio implements IEntidadServicio {
         return entidad;
     }
 
+    @Override
+    public Integer obtenerIdConNombre(String nombreEntidad) {
+        Entidad entidad = entidadRepositorio.findByNombreEntidad(nombreEntidad);
+        return (entidad != null) ? entidad.getId_entidad() : null;
+
+
+    }
+
 }

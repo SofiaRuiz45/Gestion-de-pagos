@@ -23,4 +23,5 @@ public interface FacturaRepositorio extends JpaRepository<Factura, Integer> {
     @Query("SELECT f FROM Factura f WHERE f.cliente.nombreCliente = :nombreCliente")
     List<Factura> findByNombreCliente(@Param("nombreCliente") String nombreCliente);
 
+
 }
