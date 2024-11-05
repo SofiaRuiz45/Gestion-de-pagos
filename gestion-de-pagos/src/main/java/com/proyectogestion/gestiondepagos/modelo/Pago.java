@@ -32,7 +32,7 @@ public class Pago {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     Date fecha_pago;
     String descripcion;
-    String estado_pago;
+    String estadoPago;
 
     @OneToMany(mappedBy = "pago", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
@@ -52,7 +52,7 @@ public class Pago {
                 ", numeroPago=" + numeroPago +
                 ", fecha_pago=" + fecha_pago +
                 ", descripcion='" + descripcion + '\'' +
-                ", estado_pago='" + estado_pago + '\'' +
+                ", estado_pago='" + estadoPago + '\'' +
                 ",factura= "+ factura +"\'"+
                 ", total=" + total +
                 ", formas_de_pago=[" + formasPagoStr.toString() + "]" +
