@@ -115,4 +115,13 @@ public class EntidadControlador {
             respuesta.put("eliminado", Boolean.TRUE);
             return  ResponseEntity.ok(respuesta);
         }
+
+    @GetMapping("/entidad/nombre/{nombreEntidad}")
+    public Integer obtenerIdPorNombre(@PathVariable("nombreEntidad") String nombreEntidad) {
+        Integer id = entidadServicio.obtenerIdConNombre(nombreEntidad);
+        return id;
     }
+
+
+
+}

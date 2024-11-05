@@ -29,14 +29,13 @@ public class PagoServicio implements  IPagoServicio{
                         throw new IllegalArgumentException("Actualmente existe un pago con el n°: "+ pago.getNumeroPago());
                 }
                 // Verifica si la factura existe
-                if (pago.getFactura() == null || pago.getFactura().getId_factura() == null) {
-                        throw new IllegalArgumentException("La factura asociada no existe o no se ha proporcionado."+ pago.getFactura().getId_factura());
-                }
-//busqueda por id
-                Factura facturaExistente = facturaRepositorio.findById(pago.getFactura().getId_factura()).orElse(null);
+                Factura facturaExistente = facturaRepositorio.findByNumeroFactura(pago.getFactura().getNumeroFactura());
                 if (facturaExistente == null) {
-                        throw new IllegalArgumentException("La factura asociada no existe."+ pago.getFactura().getNumeroFactura());
+                        throw new IllegalArgumentException("La factura con el número especificado no existe: " + pago.getFactura().getNumeroFactura());
                 }
+                // Asocia la factura existente al pago
+                pago.setFactura(facturaExistente);
+
                 if (pago.getFormas_de_pago() != null) {
                         for (FormaPago formaPago : pago.getFormas_de_pago()) {
                                 formaPago.setPago(pago); // Asocia cada forma de pago al pago

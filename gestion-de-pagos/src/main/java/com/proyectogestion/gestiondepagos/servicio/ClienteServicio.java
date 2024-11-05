@@ -37,4 +37,10 @@ public class ClienteServicio implements IClienteServicio {
         return clienteRepositorio.count();
     }
 
+    @Override
+    public Integer obtenerIdConNombre(String nombreCliente) {
+        Cliente cliente = clienteRepositorio.findByNombreCliente(nombreCliente);
+        return (cliente != null) ? cliente.getId_cliente() : null;
+    }
+
 }

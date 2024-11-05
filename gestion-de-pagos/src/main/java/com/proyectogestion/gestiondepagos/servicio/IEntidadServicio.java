@@ -13,4 +13,6 @@ public interface IEntidadServicio {
     public void eliminarEntidad(Entidad entidad);
 
     public Entidad iniciarSesion(String correo_entidad, Long cuit_entidad, String contrasena);
+
+    public Integer obtenerIdConNombre(String nombreEntidad);
 }
