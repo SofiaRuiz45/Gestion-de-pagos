@@ -22,7 +22,7 @@ public class Cliente {
     //ver si es necesario cambiar los nombres sacando guión bajo
     String nombreCliente;
     String rubro;
-    Long cuit_cliente;
+    Long cuitCliente;
     String direccion_cliente;
     Long telefono_cliente;
     String razon_social_cliente;

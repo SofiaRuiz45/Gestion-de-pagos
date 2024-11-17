@@ -56,7 +56,7 @@ public class ClienteControlador {
             throw new RecursoNoEncontradoEx("Id no encontrado: " + id);
         cliente.setNombreCliente(clienteRecibido.getNombreCliente());
         cliente.setRubro(clienteRecibido.getRubro());
-        cliente.setCuit_cliente(clienteRecibido.getCuit_cliente());
+        cliente.setCuitCliente(clienteRecibido.getCuitCliente());
         cliente.setDireccion_cliente(clienteRecibido.getDireccion_cliente());
         cliente.setTelefono_cliente(clienteRecibido.getTelefono_cliente());
         cliente.setRazon_social_cliente(clienteRecibido.getRazon_social_cliente());
@@ -86,5 +86,15 @@ public class ClienteControlador {
     public Integer obtenerIdPorNombreCliente(@PathVariable("nombreCliente") String nombreCliente){
         Integer id = clienteServicio.obtenerIdConNombre(nombreCliente);
         return id;
+    }
+    //buscar cliente por el cuit
+    @GetMapping("/cliente/nombrePorCuit/{cuitCliente}")
+    public ResponseEntity<String>obtenerNombrePorCuit(@PathVariable("cuitCliente") Long cuitCliente) {
+        String nombre = clienteServicio.obtenerNombrePorCuitCliente(cuitCliente);
+        if (nombre == null) {
+            return ResponseEntity.status(404).body("Cliente con CUIT " + cuitCliente + " no encontrado.");
+        }
+        logger.info("CUIT: " + cuitCliente + ", Nombre: " + nombre);
+        return ResponseEntity.ok(nombre);
     }
 }
