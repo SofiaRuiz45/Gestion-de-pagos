@@ -8,6 +8,8 @@ import java.util.List;
 
 @Service
 public class ClienteServicio implements IClienteServicio {
+
+
     @Autowired
     private ClienteRepositorio clienteRepositorio;
 
@@ -41,6 +43,12 @@ public class ClienteServicio implements IClienteServicio {
     public Integer obtenerIdConNombre(String nombreCliente) {
         Cliente cliente = clienteRepositorio.findByNombreCliente(nombreCliente);
         return (cliente != null) ? cliente.getId_cliente() : null;
+    }
+
+    @Override
+    public String obtenerNombrePorCuitCliente(Long cuitCliente) {
+        Cliente cliente = clienteRepositorio.findByCuitCliente(cuitCliente);
+        return (cliente != null) ? cliente.getNombreCliente() : null;
     }
 
 }
