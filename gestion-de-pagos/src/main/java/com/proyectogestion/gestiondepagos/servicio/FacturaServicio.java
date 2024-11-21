@@ -56,10 +56,10 @@ public class FacturaServicio  implements IFacturaServicio {
     @Override
     public Factura registrarFacturaMet(FacturaDTO facturaDTO){
         // Validar cliente
-        Cliente cliente = clienteRepositorio.findByNombreCliente(facturaDTO.getNombreCliente());
+        Cliente cliente = clienteRepositorio.findByCuitCliente(facturaDTO.getCuitCliente());
 
         // Validar entidad
-        Entidad entidad = entidadRepositorio.findByNombreEntidad(facturaDTO.getNombreEntidad());
+        Entidad entidad = entidadRepositorio.findByCuitEntidad(facturaDTO.getCuitEntidad());
 
         // Crear objeto Factura
         Factura factura = new Factura();

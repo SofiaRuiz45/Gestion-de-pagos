@@ -90,6 +90,7 @@ public class ClienteControlador {
         return cliente;
     }
     //buscar cliente por el cuit
+    //cambiar para enviar objeto  cliente
     @GetMapping("/cliente/nombrePorCuit/{cuitCliente}")
     public ResponseEntity<String>obtenerNombrePorCuit(@PathVariable("cuitCliente") Long cuitCliente) {
         String nombre = clienteServicio.obtenerNombrePorCuitCliente(cuitCliente);
@@ -99,4 +100,5 @@ public class ClienteControlador {
         logger.info("CUIT: " + cuitCliente + ", Nombre: " + nombre);
         return ResponseEntity.ok(nombre);
     }
+    //obtener los nombres de los clientes
 }

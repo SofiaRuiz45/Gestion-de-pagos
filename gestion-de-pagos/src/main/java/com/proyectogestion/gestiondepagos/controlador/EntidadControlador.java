@@ -121,6 +121,12 @@ public class EntidadControlador {
         Integer id = entidadServicio.obtenerIdConNombre(nombreEntidad);
         return id;
     }
+    //obtener la entidad por el cuit
+    @GetMapping("/buscarEntidadCuit/{cuitEntidad}")
+    public Entidad obtenerEntidadaPorCuit(@PathVariable("cuitEntidad") Long cuitEntidad){
+        Entidad entidad= entidadServicio.obtenerEntidadPorCuit(cuitEntidad);
+        return entidad;
+    }
 
 
 

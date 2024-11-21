@@ -15,8 +15,9 @@ import java.util.Date;
 @ToString
 
 public class FacturaDTO {
-    private String nombreCliente;
-    private String nombreEntidad;
+    private Long cuitCliente;
+    //hacer por defecto a la entidad con menor id
+    private Long cuitEntidad;
     private double monto_factura;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fecha_factura;
