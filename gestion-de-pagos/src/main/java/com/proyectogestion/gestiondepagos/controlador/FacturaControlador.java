@@ -5,10 +5,14 @@ import com.proyectogestion.gestiondepagos.excepcion.RecursoNoEncontradoEx;
 import com.proyectogestion.gestiondepagos.modelo.Cliente;
 import com.proyectogestion.gestiondepagos.modelo.Entidad;
 import com.proyectogestion.gestiondepagos.modelo.Factura;
+import com.proyectogestion.gestiondepagos.modelo.FacturaDTO;
+import com.proyectogestion.gestiondepagos.servicio.ClienteServicio;
+import com.proyectogestion.gestiondepagos.servicio.EntidadServicio;
 import com.proyectogestion.gestiondepagos.servicio.FacturaServicio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +26,13 @@ public class FacturaControlador {
 
     @Autowired
     private FacturaServicio facturaServicio;
+
+    @Autowired
+    private ClienteServicio clienteServicio;
+
+    @Autowired
+    private EntidadServicio entidadServicio;
+
     //obtener las facturas en este caso todas, sin distinción de clientes
     @GetMapping("/facturas")
     public List<Factura> obtenerFacturas(){
@@ -35,6 +46,17 @@ public class FacturaControlador {
         logger.info("Factura a agregar: "+factura);
         return facturaServicio.registrarFactura(factura);
     }
+    @PostMapping("/generarFactura")
+    public ResponseEntity<?> registrarFactura(@RequestBody FacturaDTO facturaDTO) {
+        try {
+            Factura facturaGuardada = facturaServicio.registrarFacturaMet(facturaDTO);
+            return ResponseEntity.ok(facturaGuardada);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno: " + e.getMessage());
+        }
+    }
+
+
     //buscar la factura por el id
     @GetMapping("/facturas/{id}")
     public ResponseEntity<Factura> obtenerFactPorId(@PathVariable Integer id){

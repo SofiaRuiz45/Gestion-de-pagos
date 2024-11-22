@@ -3,12 +3,16 @@ package com.proyectogestion.gestiondepagos.servicio;
 import com.proyectogestion.gestiondepagos.modelo.Cliente;
 import com.proyectogestion.gestiondepagos.modelo.Entidad;
 import com.proyectogestion.gestiondepagos.modelo.Factura;
+import com.proyectogestion.gestiondepagos.modelo.FacturaDTO;
 
+import java.text.ParseException;
 import java.util.List;
 
 public interface IFacturaServicio {
 
     public Factura registrarFactura(Factura factura);
+
+    public Factura registrarFacturaMet(FacturaDTO facturaDTO);
 
     public Factura buscarFacturaPorID(Integer id_factura);
 

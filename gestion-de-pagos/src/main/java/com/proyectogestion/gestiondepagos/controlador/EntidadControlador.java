@@ -115,7 +115,7 @@ public class EntidadControlador {
             respuesta.put("eliminado", Boolean.TRUE);
             return  ResponseEntity.ok(respuesta);
         }
-
+    //buscar id por normbre de entidad
     @GetMapping("/entidad/nombre/{nombreEntidad}")
     public Integer obtenerIdPorNombre(@PathVariable("nombreEntidad") String nombreEntidad) {
         Integer id = entidadServicio.obtenerIdConNombre(nombreEntidad);

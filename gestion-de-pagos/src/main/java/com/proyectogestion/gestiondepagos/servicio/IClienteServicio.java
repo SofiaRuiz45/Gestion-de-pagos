@@ -13,7 +13,7 @@ public interface IClienteServicio {
 
     public long contarClientes();
 
-    public Integer obtenerIdConNombre(String nombreCliente);
+    public Cliente obtenerClienteConNombre(String nombreCliente);
 
     public String obtenerNombrePorCuitCliente(Long cuitCliente);
 }

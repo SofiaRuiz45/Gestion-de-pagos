@@ -81,11 +81,13 @@ public class ClienteControlador {
     public long contarClientes(){
         return clienteServicio.contarClientes();
     }
-    //buscar id por el nombre del cliente
+
+    //buscar cliente por el nombre del cliente
     @GetMapping("/cliente/nombre/{nombreCliente}")
-    public Integer obtenerIdPorNombreCliente(@PathVariable("nombreCliente") String nombreCliente){
-        Integer id = clienteServicio.obtenerIdConNombre(nombreCliente);
-        return id;
+    public Cliente obtenerClientePorNombreCliente(@PathVariable("nombreCliente") String nombreCliente) {
+        // Llamada al servicio para obtener el cliente con el nombre proporcionado
+        Cliente cliente = clienteServicio.obtenerClienteConNombre(nombreCliente);
+        return cliente;
     }
     //buscar cliente por el cuit
     @GetMapping("/cliente/nombrePorCuit/{cuitCliente}")

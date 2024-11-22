@@ -40,9 +40,9 @@ public class ClienteServicio implements IClienteServicio {
     }
 
     @Override
-    public Integer obtenerIdConNombre(String nombreCliente) {
+    public Cliente obtenerClienteConNombre(String nombreCliente) {
         Cliente cliente = clienteRepositorio.findByNombreCliente(nombreCliente);
-        return (cliente != null) ? cliente.getId_cliente() : null;
+        return cliente;
     }
 
     @Override
