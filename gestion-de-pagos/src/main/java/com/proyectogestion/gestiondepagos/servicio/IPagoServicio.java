@@ -18,4 +18,6 @@ public interface IPagoServicio {
     public List<Pago>buscarPagosPorEstado(String estadoPago);
 
     public  long contarPagosPorEstado(String estadoPago);
+
+    public List<Pago> obtenerUltimosPagos(Integer cantidad);
 }

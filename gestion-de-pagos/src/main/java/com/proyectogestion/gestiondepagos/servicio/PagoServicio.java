@@ -4,6 +4,8 @@ import com.proyectogestion.gestiondepagos.modelo.*;
 import com.proyectogestion.gestiondepagos.repositorio.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,11 +37,28 @@ public class PagoServicio implements  IPagoServicio{
                 // Asocia la factura existente al pago
                 pago.setFactura(facturaExistente);
 
+                // Actualiza la deuda de la factura
+                double nuevaDeuda = facturaExistente.getDeuda() - pago.getTotal();
+                if (nuevaDeuda < 0) {
+                        throw new IllegalArgumentException("El monto del pago no puede exceder la deuda de la factura.");
+                }
+                facturaExistente.setDeuda(nuevaDeuda);
+                // Cambia el estado de la factura si la deuda llega a 0
+                if (nuevaDeuda == 0) {
+                        facturaExistente.setDetalle("Completo"); // Cambia el estado a COMPLETO
+                        pago.setEstadoPago("Completo");         // Cambia el estado del pago a COMPLETO
+                } else {
+                        pago.setEstadoPago("Pendiente");
+                }
+                //asocia las formas de pago
                 if (pago.getFormas_de_pago() != null) {
                         for (FormaPago formaPago : pago.getFormas_de_pago()) {
                                 formaPago.setPago(pago); // Asocia cada forma de pago al pago
                         }
                 }
+                // Guarda la factura actualizada
+                facturaRepositorio.save(facturaExistente);
+
                 return pagoRepositorio.save(pago);
         }
         @Override
@@ -69,5 +88,11 @@ public class PagoServicio implements  IPagoServicio{
         @Override
         public long contarPagosPorEstado(String estadoPago) {
                 return pagoRepositorio.countByEstadoPago(estadoPago);
+        }
+
+        @Override
+        public List<Pago> obtenerUltimosPagos(Integer cantidad) {
+                Pageable pageable = PageRequest.of(0, cantidad);
+                return pagoRepositorio.findLastPagos(pageable).getContent();
         }
 }

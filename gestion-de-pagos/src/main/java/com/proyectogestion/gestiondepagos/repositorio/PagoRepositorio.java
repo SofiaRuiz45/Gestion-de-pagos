@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 public interface PagoRepositorio extends JpaRepository<Pago, Integer> {
@@ -23,5 +26,7 @@ public interface PagoRepositorio extends JpaRepository<Pago, Integer> {
     List<Pago> findByEstadoPago(String estadoPago);
 
     Long countByEstadoPago(String estadoPago);
+    @Query("SELECT p FROM Pago p ORDER BY p.fecha_pago DESC")
+    Page <Pago> findLastPagos(Pageable pageable);
     
 }
