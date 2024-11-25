@@ -65,4 +65,9 @@ public class PagoServicio implements  IPagoServicio{
         public List<Pago> buscarPagosPorEstado(String estadoPago) {
                 return pagoRepositorio.findByEstadoPago(estadoPago);
         }
+
+        @Override
+        public long contarPagosPorEstado(String estadoPago) {
+                return pagoRepositorio.countByEstadoPago(estadoPago);
+        }
 }

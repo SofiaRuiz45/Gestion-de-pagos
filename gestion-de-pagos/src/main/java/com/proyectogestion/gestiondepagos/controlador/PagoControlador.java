@@ -49,4 +49,10 @@ public class PagoControlador{
     public List<Pago>obtenerPagosPorEstado(@PathVariable("estadoPago") String estadoPago){
         return pagoServicio.buscarPagosPorEstado(estadoPago);
     }
+
+    @GetMapping("/pagosContadosPorEstado/{estadoPago}")
+    public ResponseEntity<Long> contarPagosEstado(@PathVariable String estadoPago){
+        Long cantidadPagos= pagoServicio.contarPagosPorEstado(estadoPago);
+        return ResponseEntity.ok(cantidadPagos);
+    }
 }
