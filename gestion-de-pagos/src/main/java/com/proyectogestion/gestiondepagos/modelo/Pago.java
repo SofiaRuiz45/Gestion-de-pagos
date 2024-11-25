@@ -27,11 +27,10 @@ public class Pago {
     @ManyToOne
     @JoinColumn(name = "id_factura")
     Factura factura;
-
     //se define el formato: año/mes/día
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     Date fecha_pago;
-    String descripcion;
+    //modificación del estado cuando la "deuda" de factura este en 0
     String estadoPago;
 
     @OneToMany(mappedBy = "pago", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -51,7 +50,6 @@ public class Pago {
                 "id_pago=" + id_pago +
                 ", numeroPago=" + numeroPago +
                 ", fecha_pago=" + fecha_pago +
-                ", descripcion='" + descripcion + '\'' +
                 ", estado_pago='" + estadoPago + '\'' +
                 ",factura= "+ factura +"\'"+
                 ", total=" + total +
