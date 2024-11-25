@@ -15,4 +15,6 @@ public interface IEntidadServicio {
     public Entidad iniciarSesion(String correo_entidad, Long cuit_entidad, String contrasena);
 
     public Integer obtenerIdConNombre(String nombreEntidad);
+
+    public Entidad obtenerEntidadPorCuit(Long cuit);
 }

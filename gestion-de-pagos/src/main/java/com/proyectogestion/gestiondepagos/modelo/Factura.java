@@ -19,7 +19,10 @@ public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id_factura;
+    //este es el monto total a pagar
     Double monto_factura;
+    //este es el monto/deuda restante
+    Double deuda;
     //se define el formato: año/mes/día
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     Date fecha_factura;
@@ -32,6 +35,8 @@ public class Factura {
     @ManyToOne
     @JoinColumn(name = "id_entidad")
     Entidad entidad;
+
+    String detalle;
 
     //revisar su funcionalidad y si son de utilidad
     public Integer getNumeroCliente() {

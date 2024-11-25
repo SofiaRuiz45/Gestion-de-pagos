@@ -1,5 +1,6 @@
 package com.proyectogestion.gestiondepagos.servicio;
 
+import com.proyectogestion.gestiondepagos.excepcion.RecursoNoEncontradoEx;
 import com.proyectogestion.gestiondepagos.modelo.Cliente;
 import com.proyectogestion.gestiondepagos.modelo.Entidad;
 import com.proyectogestion.gestiondepagos.modelo.Factura;
@@ -33,21 +34,18 @@ public class FacturaServicio  implements IFacturaServicio {
         if (facturaExistente != null) {
             throw new IllegalArgumentException("Ya existe una factura con el n°: " + factura.getNumeroFactura());
         }
-
         // Validar cliente
         if (factura.getCliente() != null && factura.getCliente().getId_cliente() != null) {
             Cliente cliente = clienteRepositorio.findById(factura.getCliente().getId_cliente())
                     .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
             factura.setCliente(cliente);
         }
-
         // Validar entidad
         if (factura.getEntidad() != null && factura.getEntidad().getId_entidad() != null) {
             Entidad entidad = entidadRepositorio.findById(factura.getEntidad().getId_entidad())
                     .orElseThrow(() -> new RuntimeException("Entidad no encontrada"));
             factura.setEntidad(entidad);
         }
-
         // Guardar la factura
         return facturaRepositorio.save(factura);
     }
@@ -56,24 +54,23 @@ public class FacturaServicio  implements IFacturaServicio {
     @Override
     public Factura registrarFacturaMet(FacturaDTO facturaDTO){
         // Validar cliente
-        Cliente cliente = clienteRepositorio.findByNombreCliente(facturaDTO.getNombreCliente());
-
+        Cliente cliente = clienteRepositorio.findByCuitCliente(facturaDTO.getCuitCliente());
         // Validar entidad
-        Entidad entidad = entidadRepositorio.findByNombreEntidad(facturaDTO.getNombreEntidad());
-
+        Entidad entidad = entidadRepositorio.findByCuitEntidad(facturaDTO.getCuitEntidad());
         // Crear objeto Factura
         Factura factura = new Factura();
         factura.setCliente(cliente);
         factura.setEntidad(entidad);
         factura.setMonto_factura(facturaDTO.getMonto_factura());
+        factura.setDeuda(facturaDTO.getDeuda());
         factura.setNumeroFactura(Integer.parseInt(facturaDTO.getNumeroFactura()));
         factura.setFecha_factura(facturaDTO.getFecha_factura());
-
+        factura.setDetalle(facturaDTO.getDetalle());
         // Guardar factura
         return facturaRepositorio.save(factura);
     }
 
-    @Override
+        @Override
     public Factura buscarFacturaPorID(Integer id_factura) {
         Factura factura = facturaRepositorio.findById(id_factura).orElse(null);
         return factura;

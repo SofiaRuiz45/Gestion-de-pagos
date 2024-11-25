@@ -20,7 +20,6 @@ public class PagoServicio implements  IPagoServicio{
         public List<Pago> verPagosRealizados() {
                 return pagoRepositorio.findAll();
         }
-
         @Override
         @Transactional
         public Pago realizarPago(Pago pago) {

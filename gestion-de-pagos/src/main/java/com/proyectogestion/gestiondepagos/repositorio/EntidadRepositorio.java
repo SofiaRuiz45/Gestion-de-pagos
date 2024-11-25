@@ -10,5 +10,5 @@ public interface EntidadRepositorio extends JpaRepository <Entidad, Integer>{
 
     Entidad findByNombreEntidad(String nombreEntidad);
 
-
+    Entidad findByCuitEntidad(Long cuitEntidad);
 }

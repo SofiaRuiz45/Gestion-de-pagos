@@ -46,8 +46,12 @@ public class EntidadServicio implements IEntidadServicio {
     public Integer obtenerIdConNombre(String nombreEntidad) {
         Entidad entidad = entidadRepositorio.findByNombreEntidad(nombreEntidad);
         return (entidad != null) ? entidad.getId_entidad() : null;
+    }
 
-
+    @Override
+    public Entidad obtenerEntidadPorCuit(Long cuit) {
+        Entidad entidad = entidadRepositorio.findByCuitEntidad(cuit);
+        return entidad;
     }
 
 }
