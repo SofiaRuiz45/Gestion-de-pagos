@@ -16,4 +16,6 @@ public interface IPagoServicio {
     public List<Pago>buscarPagoPorEntidad(String nombreEntidad);
 
     public List<Pago>buscarPagosPorEstado(String estadoPago);
+
+    public  long contarPagosPorEstado(String estadoPago);
 }

@@ -55,8 +55,6 @@ public class FacturaControlador {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno: " + e.getMessage());
         }
     }
-
-
     //buscar la factura por el id
     @GetMapping("/facturas/{id}")
     public ResponseEntity<Factura> obtenerFactPorId(@PathVariable Integer id){
@@ -108,5 +106,9 @@ public class FacturaControlador {
     @GetMapping("/facturas/cliente_nombre/{nombreCliente}")
     public List<Factura> obtenerPagosPorNombreCliente(@RequestParam("nombreCliente") String nombreCliente){
         return facturaServicio.buscarPagosPorCliente(nombreCliente) ;
+    }
+    @GetMapping("/facturas/cantidad")
+    public long contarFacturas(){
+        return facturaServicio.contarFacturas();
     }
 }

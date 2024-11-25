@@ -22,5 +22,6 @@ public interface PagoRepositorio extends JpaRepository<Pago, Integer> {
 
     List<Pago> findByEstadoPago(String estadoPago);
 
+    Long countByEstadoPago(String estadoPago);
     
 }

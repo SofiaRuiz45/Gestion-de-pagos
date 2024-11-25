@@ -23,7 +23,8 @@ public interface IFacturaServicio {
     public List<Factura> buscarFacturasPorCliente(Cliente cliente);
 
     public List<Factura> buscarFacturasPorEntidad(Entidad entidad);
-
     //por nombre de cliente
     public List<Factura> buscarPagosPorCliente(String nombreCliente);
+
+    public long contarFacturas();
 }

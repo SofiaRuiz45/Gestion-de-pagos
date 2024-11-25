@@ -89,7 +89,7 @@ public class ClienteControlador {
         Cliente cliente = clienteServicio.obtenerClienteConNombre(nombreCliente);
         return cliente;
     }
-    //buscar cliente por el cuit
+
     //cambiar para enviar objeto  cliente
     @GetMapping("/cliente/nombrePorCuit/{cuitCliente}")
     public ResponseEntity<String>obtenerNombrePorCuit(@PathVariable("cuitCliente") Long cuitCliente) {

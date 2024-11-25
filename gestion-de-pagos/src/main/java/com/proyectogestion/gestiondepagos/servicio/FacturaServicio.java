@@ -103,4 +103,9 @@ public class FacturaServicio  implements IFacturaServicio {
         return facturaRepositorio.findByNombreCliente(nombreCliente) ;
     }
 
+    @Override
+    public long contarFacturas() {
+        return facturaRepositorio.count();
+    }
+
 }
